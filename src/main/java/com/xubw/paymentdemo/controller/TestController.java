@@ -1,0 +1,32 @@
+package com.xubw.paymentdemo.controller;
+
+import com.xubw.paymentdemo.config.WxPayConfig;
+import com.xubw.paymentdemo.valueObject.R;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+/**
+ * @author XuBowen
+ * @version 1.0
+ * @date 2022/1/13 19:26
+ */
+
+@Api(tags = "测试控制器")
+@RestController
+@RequestMapping("/api/test")
+public class TestController {
+
+    @Resource
+    private WxPayConfig wxPayConfig;
+
+    @GetMapping
+    public R getWxPayConfig(){
+
+        String mchId = wxPayConfig.getMchId();
+        return R.ok().data("mchId", mchId);
+    }
+}
